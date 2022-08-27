@@ -218,7 +218,7 @@ class experimentVideo:
                     # img2=cv.GaussianBlur(img2,(5,5),-1)
                     #如果经常丢失目标erode可以减少一些，如果经常出现干扰点可以重新截取视频或者增加erode的次数
                     threshold=thresh_callback(threshold)#后面两个数代表开始/结束线性拟合的时间
-                    cv.putText(threshold,str(time/fps),(0,0),cv.FONT_HERSHEY_PLAIN,2.0,(255,255,255),thickness=1)
+                    cv.putText(threshold,str(round(time/fps*100)/100),(20,30),cv.FONT_HERSHEY_PLAIN,1.0,(255,255,255),thickness=1)
                     cv.imshow("output",threshold)
                 else:
                     break
@@ -297,7 +297,7 @@ class experimentVideo:
                             last_vector=new_vector
                             
                         # Show in a window
-                        cv.putText(drawing,str(time/fps),(0,0),cv.FONT_HERSHEY_PLAIN,2.0,(255,255,255),thickness=1)
+                        cv.putText(threshold,str(round(time/fps*100)/100),(20,30),cv.FONT_HERSHEY_PLAIN,1.0,(255,255,255),thickness=1)
                         cv.imshow("output",drawing)
                     else:
                         break
