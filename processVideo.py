@@ -442,6 +442,8 @@ class experimentVideo:
             if key == 67 or key ==99:
                 plt.cla()
             if key == ord('q') or key == 27:
+                plt.close()
+                cv.destroyAllWindows()
                 break
 q=False
 consol_img_filepath=easygui.fileopenbox("choose a picture you like as consol")

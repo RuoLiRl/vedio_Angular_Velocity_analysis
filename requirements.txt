@@ -1,5 +1,4 @@
 easygui
 sklearn
-opencv
 matplotlib
 opencv-python
