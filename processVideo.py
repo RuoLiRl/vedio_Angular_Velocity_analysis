@@ -1,3 +1,4 @@
+from ast import Break
 import cv2 as cv
 import random as rng
 import numpy as np
@@ -395,7 +396,7 @@ class experimentVideo:
                 break
         model_list=[]
         modelR=[]
-        for i in range(0,11):
+        for i in range(2,11):
                         model=LinearRegression()
                         model.fit(xfit_list[i],yfit_list[i])
                         if all_dot_print:plt.scatter(xLine[i],yLine[i],s=1)
@@ -426,11 +427,13 @@ class experimentVideo:
             key=cv.waitKey(0)
             if key == 83 or key == 115:
                 plt.cla()
-                plt.scatter(xLine[0],yLine[0],color="red",s=1)
+                plt.title(self.videoname)
+                plt.scatter(xLine[index],yLine[index],color="red",s=1)
             if key == 78 or key == 110:
                 plt.plot(xfit_list[index],model.predict(xfit_list[index]),color="red")
             if key == 97 or key == 65:
                 plt.cla()
+                plt.title(self.videoname)
                 for i in range(0,11):
                         plt.scatter(xLine[i],yLine[i],s=1)
             if 47<key<56:
@@ -441,6 +444,7 @@ class experimentVideo:
                 plt.scatter(xLine[10],yLine[10],s=1)
             if key == 67 or key ==99:
                 plt.cla()
+                plt.title(self.videoname)
             if key == ord('q') or key == 27:
                 plt.close()
                 cv.destroyAllWindows()
@@ -470,7 +474,13 @@ while not q:
         while True:
             try:
                 endtime=float(easygui.enterbox("type in the end time of output",default=0))
+                if endtime - starttime < 0.2:
+                    easygui.msgbox("the end time must be after the starttime for a while")
+                    continue
                 break
             except:
                 easygui.msgbox("please type in a float ")
+        if starttime == 0:
+            starttime=0.1
+        print(starttime,endtime)
         videoexp.output(starttime,endtime)
