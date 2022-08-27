@@ -441,6 +441,8 @@ class experimentVideo:
                 plt.scatter(xLine[10],yLine[10],s=1)
             if key == 67 or key ==99:
                 plt.cla()
+            if key == ord('q') or key == 27:
+                break
 q=False
 consol_img_filepath=easygui.fileopenbox("choose a picture you like as consol")
 filepath=easygui.fileopenbox("choose the video")
@@ -457,6 +459,16 @@ while not q:
         speed=easygui.integerbox("type in the interval between each flip",default=10)
         videoexp.fine(starttime,speed)
     elif choice=="output":
-        starttime=float(easygui.enterbox("type in the start time of output",default=0))
-        endtime=float(easygui.enterbox("type in the end time of output",default=0))
+        while True:
+            try:
+                starttime=float(easygui.enterbox("type in the start time of output",default=0))
+                break
+            except:
+                easygui.msgbox("please type in a float ")
+        while True:
+            try:
+                endtime=float(easygui.enterbox("type in the end time of output",default=0))
+                break
+            except:
+                easygui.msgbox("please type in a float ")
         videoexp.output(starttime,endtime)
